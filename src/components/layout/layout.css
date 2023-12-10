@@ -1,0 +1,11 @@
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.responsive-height {
+  @apply h-[calc(100vh-64px)] overflow-y-scroll no-scrollbar;
+}

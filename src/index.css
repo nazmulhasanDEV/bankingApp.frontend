@@ -1,0 +1,51 @@
+@import "./components/layout/layout.css";
+@import "./components/ui/styles/common.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+      @apply text-18 font-medium text-black-primary;
+    }
+    .text-bold-16{
+      @apply text-16 font-bold text-white-primary;
+    }
+    .text-semibold-14 {
+      @apply text-14 font-semibold text-black-primary;
+    }
+    .text-semibold-32{
+      @apply text-32 font-semibold text-black-primary;
+    }
+    .text-semibold-28{
+      @apply text-28 font-semibold text-black-primary;
+    }
+    .text-semibold-16{
+      @apply text-16 font-semibold text-black-primary;
+    }
+    .text-semibold-18{
+      @apply text-18 font-semibold text-black-primary;
+    }
+    .text-normal-14 {
+      @apply text-14 font-normal text-black-primary;
+    }
+    .text-medium-10 {
+      @apply text-10 font-medium text-black-primary;
+    }
+    .text-medium-12 {
+      @apply text-10 font-medium text-black-primary;
+    }
+    .text-medium-14 {
+      @apply text-14 font-medium text-white-primary;
+    }
+    .text-bold-12{
+      @apply text-12 font-bold text-purple-tertiary;
+    }
+    .text-medium-24{
+      @apply text-24 font-medium text-purple-tertiary;
+    }
+    .text-title {
+      @apply text-30 font-bold text-black-primary;
+    }
+}
