@@ -16,7 +16,7 @@ export function Tabs({ children }) {
   const [activeTab, setActiveTab] = useState(findActiveTab(children));
   return (
     <>
-      <div className="flex gap-2 justify-start mx-6 border-b-[1px] border-opacity-50 border-gray-light">
+      <div className="flex gap-2 justify-start bg-blue-600">
         {children.map((item, i) => {
           return (
             <>
@@ -34,7 +34,7 @@ export function Tabs({ children }) {
           );
         })}
       </div>
-      <div className="p-5">
+      <div className="p-5 card">
         {children.map((item, i) => {
           return (
             <div key={i} className={` ${i === activeTab ? "visible" : "hidden"} text-gray-primary text-semi-12`}>
@@ -48,14 +48,16 @@ export function Tabs({ children }) {
 }
 
 export function Tab({ children, activeTab, currentTab, setActiveTab }) {
+  const clipPath = "polygon(50% 0%, 100% 0, 100% 35%, 100% 74%, 63% 74%, 50% 100%, 36% 74%, 0 74%, 0% 35%, 0 0)";
   return (
     <>
       <div
-        className={`px-4 py-3 cursor-pointer 
-      ${activeTab === currentTab ? "border-b-[1px] border-purple-secondary" : ""}`}
+        className={`px-4 flex items-center cursor-pointer 
+      ${activeTab === currentTab ? "clip--polygon pb-6" : ""}`}
         role="button"
         tabIndex="0"
         onClick={() => setActiveTab(currentTab)}
+        style={{ clipPath: activeTab === currentTab ? clipPath : 'none' }}
       >
         <p className={`${activeTab === currentTab ? "text-purple-secondary" : "text-gray-secondary"} text-semibold-18 cursor-pointer hover:text-purple-secondary`}>{children}</p>
       </div>
