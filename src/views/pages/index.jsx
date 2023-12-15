@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, Outlet } from "react-router-dom";
-import WelcomePage from "./welcomePage";
+import HomePage from "./homePage";
+
 
 const Layout = () => {
     const location = useLocation();
@@ -8,7 +9,7 @@ const Layout = () => {
   return (
     <div className="w-[100vw] h-screen flex items-center justify-center">
       <Outlet />
-      {pathname==="/" && <WelcomePage/>}
+      {pathname==="/" && <HomePage/>}
     </div>
   );
 };

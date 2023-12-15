@@ -1,0 +1,77 @@
+.background-home {
+  background-color: white !important;
+  width: 100vw;
+  height: 100vh;
+}
+.header-home {
+  position: relative;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid rgb(182, 182, 182);
+  font-weight: 400;
+}
+.header-content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.logo-header {
+  width: 120px;
+  padding: 10px;
+}
+.show-search {
+  width: 80%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+  z-index: 2;
+  background-color: rgb(243, 243, 243);
+  animation: searchAnimation 0.5s forwards;
+}
+
+@keyframes searchAnimation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.hide-search {
+  display: none;
+}
+/* logo personal business section */
+.header-content ul {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: black;
+  padding: 5px 0;
+}
+.header-content ul li {
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+}
+.header-content ul li.clicked {
+  color: brown;
+  border-bottom: 4px solid orange;
+}
+/* "Blog", "About Us", "Contact Us", "Help & Support" section */
+.header-content div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: black;
+  padding: 5px 0;
+}
+.header-content div span {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.header-content div span:hover {
+  cursor: pointer;
+  border-bottom: 1px solid gray;
+}
