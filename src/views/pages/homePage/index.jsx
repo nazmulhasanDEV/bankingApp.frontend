@@ -97,6 +97,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+        <div className="text-black w-[80%] m-auto">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis nulla nesciunt quam adipisci necessitatibus minus natus, suscipit odio laborum excepturi doloribus aliquid atque, nobis expedita ab est dignissimos, commodi ea.</div>
     </div>
   );
 };
