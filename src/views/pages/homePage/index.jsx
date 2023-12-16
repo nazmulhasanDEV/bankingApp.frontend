@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
-import { Search, X } from "react-feather";
+import { ArrowRight, ChevronDown, Search, X } from "react-feather";
+import Submenus from "./Submenus";
 
 const HomePage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -9,6 +10,7 @@ const HomePage = () => {
   const handleItemClick = (index) => {
     setSelectedItem(index);
   };
+
   const listItemsFirst = ["Personal", "Business"];
   const listItemsSecond = ["Blog", "About Us", "Contact Us", "Help & Support"];
   return (
@@ -38,7 +40,7 @@ const HomePage = () => {
             </button>
             {showSearchField && (
               <div
-                className={`${
+                className={` ${
                   showSearchField === true ? "show-search" : "hide-search"
                 }`}
               >
@@ -55,7 +57,10 @@ const HomePage = () => {
                   <button>
                     <Search className="text-gray-500 w-6 h-6" />
                   </button>
-                  <button className="mr-5 bg-blue-600 rounded-md w-10 h-10 flex items-center justify-center" onClick={() => setShowSearchField(false)}>
+                  <button
+                    className="mr-5 bg-blue-600 rounded-md w-10 h-10 flex items-center justify-center"
+                    onClick={() => setShowSearchField(false)}
+                  >
                     <X className="text-white" />
                   </button>
                 </div>
@@ -64,6 +69,34 @@ const HomePage = () => {
           </div>
         </div>
       </header>
+
+      <div
+        className={`text-black homepage-body ${
+          showSearchField ? "opacity-[0.2]" : ""
+        }`}
+      >
+        <Submenus />
+      </div>
+      <div className={`${showSearchField ? "opacity-[0.2]" : ""}`}>
+        <img
+          src="./src/assets/common-assets/images/hero-img.jpeg"
+          alt=""
+          className="w-[100vw]"
+        />
+
+      </div>
+      <div className={`absolute top-44  ${
+          showSearchField ? "opacity-[0.2]" : ""
+        } left-44`} style={{zIndex:'2'}}>
+          <div className="flex flex-col gap-4">
+            <p className="text-4xl font-bold">Mobile Banking</p>
+            <p className="text-yellow-600 text-xl font-bold">Banking in your palms</p>
+            <div className="flex gap-4">
+              <button className="p-4 bg-blue-500 flex gap-2">Contact Your Local Branch <ArrowRight className="w-6 h-6 text-yellow-400"/></button>
+              <button className="p-4 bg-white text-blue-500 flex gap-2">Call 573284 893 <ArrowRight className="w-6 h-6 "/></button>
+            </div>
+          </div>
+        </div>
     </div>
   );
 };

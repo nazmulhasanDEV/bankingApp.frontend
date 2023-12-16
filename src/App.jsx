@@ -14,8 +14,8 @@ import HomePage from "./views/pages/homePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="home" element={<HomePage />} />
+    <Route element={<Layout />}>
+      <Route path="/" element={<HomePage />} />
       <Route path="login" element={<LoginBOQ />} />
       <Route path="main" element={<MainPage />} />
     </Route>

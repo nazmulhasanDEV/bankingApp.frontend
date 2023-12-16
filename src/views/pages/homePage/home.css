@@ -1,5 +1,5 @@
 .background-home {
-  background-color: white !important;
+  background-color: white;
   width: 100vw;
   height: 100vh;
 }
@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   top: 0;
-  border-bottom: 1px solid rgb(182, 182, 182);
+  border-bottom: 1px solid rgb(232, 232, 232);
   font-weight: 400;
 }
 .header-content {
@@ -26,7 +26,7 @@
   top: 0;
   left: 0;
   transform: translateX(100%);
-  z-index: 2;
+  z-index: 999;
   background-color: rgb(243, 243, 243);
   animation: searchAnimation 0.5s forwards;
 }
@@ -74,4 +74,9 @@
 .header-content div span:hover {
   cursor: pointer;
   border-bottom: 1px solid gray;
+}
+/* ----------------------- */
+.homepage-body {
+  width: 80%;
+  margin: 0 auto;
 }
