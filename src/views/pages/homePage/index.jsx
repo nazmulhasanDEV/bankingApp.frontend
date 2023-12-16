@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { ArrowRight, ChevronDown, Search, X } from "react-feather";
 import Submenus from "./Submenus";
+import FeatureCardComponents from "./FeatureCardComponents";
 
 const HomePage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -97,7 +98,31 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="text-black w-[80%] m-auto">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis nulla nesciunt quam adipisci necessitatibus minus natus, suscipit odio laborum excepturi doloribus aliquid atque, nobis expedita ab est dignissimos, commodi ea.</div>
+        
+        <div className="text-black w-[80%] m-auto">
+          <div className="flex items-center gap-8 justify-center mt-5">
+
+          <p className="border-b-4 border-transparent hover:border-yellow-500 w-fit">Feature</p>
+          <p className="border-b-4 border-transparent hover:border-yellow-500 w-fit">Apply</p>
+          <p className="border-b-4 border-transparent hover:border-yellow-500 w-fit">Important Information</p>
+          <p className="border-b-4 border-transparent hover:border-yellow-500 w-fit">Help</p>
+          <button className="flex items-center gap-2 bg-yellow-500 p-4">
+            Log On To Internet Banking <ArrowRight className="w-5 h-5"/>
+          </button>
+          </div>
+        </div>
+        <div className="border-b-[1px] border-gray-300 border-opacity-40 my-5"></div>
+        <div className="text-black w-[80%] m-auto">
+          <div className="flex justify-between">
+          <div className="flex flex-col gap-8 flex-wrap w-1/3">
+            <p className="text-4xl font-bold">BOQ Mobile features</p>
+            <p className="font-thin">BOQ Mobile puts you in charge of how you view BOQ on your mobile device.</p>
+          </div>
+          <div className="w-2/3">
+            <FeatureCardComponents/>
+          </div>
+          </div>
+        </div>
     </div>
   );
 };
