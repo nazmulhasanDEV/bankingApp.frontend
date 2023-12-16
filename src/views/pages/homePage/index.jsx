@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { ArrowRight, ChevronDown, Search, X } from "react-feather";
 import Submenus from "./Submenus";
-import FeatureCardComponents from "./FeatureCardComponents";
+import FeatureCards from "./FeatureCards";
+import Footer from "./Footer";
 
 const HomePage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -15,7 +16,7 @@ const HomePage = () => {
   const listItemsFirst = ["Personal", "Business"];
   const listItemsSecond = ["Blog", "About Us", "Contact Us", "Help & Support"];
   return (
-    <div className="background-home">
+    <div className="background-home relative">
       <header className="header-home">
         <div className="header-content">
           <ul>
@@ -72,13 +73,11 @@ const HomePage = () => {
       </header>
 
       <div
-        className={`text-black homepage-body ${
-          showSearchField ? "opacity-[0.2]" : ""
-        }`}
+        className="text-black homepage-body"
       >
         <Submenus />
       </div>
-      <div className={`${showSearchField ? "opacity-[0.2]" : ""}`}>
+      <div>
         <img
           src="./src/assets/common-assets/images/hero-img.jpeg"
           alt=""
@@ -86,9 +85,7 @@ const HomePage = () => {
         />
 
       </div>
-      <div className={`absolute top-44  ${
-          showSearchField ? "opacity-[0.2]" : ""
-        } left-44`} style={{zIndex:'2'}}>
+      <div className="absolute top-44 left-44" style={{zIndex:'2'}}>
           <div className="flex flex-col gap-4">
             <p className="text-4xl font-bold">Mobile Banking</p>
             <p className="text-yellow-600 text-xl font-bold">Banking in your palms</p>
@@ -111,18 +108,84 @@ const HomePage = () => {
           </button>
           </div>
         </div>
-        <div className="border-b-[1px] border-gray-300 border-opacity-40 my-5"></div>
+        <div className="border-b-[1px] border-gray-300 border-opacity-40 w-[80%] my-5 m-auto"></div>
         <div className="text-black w-[80%] m-auto">
-          <div className="flex justify-between">
-          <div className="flex flex-col gap-8 flex-wrap w-1/3">
+          <div className="flex gap-32 justify-between">
+          <div className="flex flex-col gap-8 flex-wrap w-1/5">
             <p className="text-4xl font-bold">BOQ Mobile features</p>
             <p className="font-thin">BOQ Mobile puts you in charge of how you view BOQ on your mobile device.</p>
           </div>
-          <div className="w-2/3">
-            <FeatureCardComponents/>
+          <div className="w-4/5">
+            <FeatureCards/>
           </div>
           </div>
         </div>
+        <div className="border-b-[1px] border-gray-300 border-opacity-40 w-[80%] my-5 m-auto"></div>
+        <div className="text-black w-[80%] m-auto">
+          <div className="flex gap-32 justify-between">
+          <div className="flex flex-col gap-8 flex-wrap w-1/5">
+            <p className="text-4xl font-bold">How do I get BOQ Mobile?</p>
+          </div>
+          <div className="w-4/5 flex flex-col gap-5">
+            <p className="text-2xl font-bold">BOQ Internet Banking customers</p>
+            <p className="font-thin">If you have registered for Internet Banking, you can download BOQ Mobile using the below links:</p>
+            <div className=" bg-gray-900">
+    <div className="max-w-2xl mx-auto text-white py-10">
+        <div className="text-center">
+            <div className="flex justify-center my-10">
+                <div className="flex items-center border rounded-lg px-4 py-2 w-52 mx-2">
+                    <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" className="w-7 md:w-8"/>
+                    <div className="text-left ml-3">
+                        <p className='text-xs text-gray-200'>Download on </p>
+                        <p className="text-sm md:text-base"> Google Play Store </p>
+                    </div>
+                </div>
+                <div className="flex items-center border rounded-lg px-4 py-2 w-44 mx-2">
+                    <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" className="w-7 md:w-8"/>
+                    <div className="text-left ml-3">
+                        <p className='text-xs text-gray-200'>Download on </p>
+                        <p className="text-sm md:text-base"> Apple Store </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+    <div className="flex flex-col gap-4">
+          <p className="text-2xl">BOQ customers without Internet Banking</p>
+          <ul className="list-disc">
+            <li>Register for Internet Banking.</li>
+            <li>Download the BOQ Mobile app using the links above.</li>
+          </ul>
+        </div>
+          </div>
+          </div>
+        </div>
+        <div className="border-b-[1px] border-gray-300 border-opacity-40 w-[80%] my-5 m-auto"></div>
+        <div className="text-black w-[80%] m-auto">
+          <div className="flex gap-32 justify-between">
+          <div className="flex flex-col gap-8 flex-wrap w-1/5">
+            <p className="text-4xl font-bold">Important information</p>
+          </div>
+          <div className="w-4/5">
+            <p className="font-thin">Before you use Mobile Banking, you must view and accept the Electronic Banking Terms and Conditions. You must Log On to Internet Banking to accept the Terms and Conditions before you use Mobile Banking. You will be shown the Electronic Banking Terms and Conditions the first time you Log On to Internet Banking. You can also view them on the Terms and Conditions page at any time.</p>
+          </div>
+          </div>
+        </div>
+        <div className="border-b-[1px] border-gray-300 border-opacity-40 w-[80%] my-5 m-auto"></div>
+        <div className="text-black w-[80%] flex m-auto">
+          <div className="flex gap-10">
+          <div className="flex flex-col flex-wrap">
+            <img src="https://www.boq.com.au/content/dam/boq/images/content-tile/young-man-laptop-content.jpg" alt="" srcset="" />
+          </div>
+          <div className="w-4/5 flex flex-col gap-5">
+            <p className="font-thin text-xl">Need help with Mobile Banking?</p>
+            <button className="p-4 bg-blue-500 text-white flex gap-2 w-fit">View online banking help <ArrowRight className="w-6 h-6 text-yellow-400"/></button>
+          </div>
+          </div>
+        </div>
+        <Footer/>
     </div>
   );
 };
