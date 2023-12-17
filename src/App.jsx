@@ -8,12 +8,14 @@ import {
 import Layout from "./views/pages";
 import MainPage from "./views/pages/main";
 import LoginBOQ from "./views/pages/loginPage";
+import HomePage from "./views/pages/homePage";
 
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route element={<Layout />}>
+      <Route path="/" element={<HomePage />} />
       <Route path="login" element={<LoginBOQ />} />
       <Route path="main" element={<MainPage />} />
     </Route>

@@ -1,14 +1,13 @@
 import React from "react";
 import { useLocation, Outlet } from "react-router-dom";
-import WelcomePage from "./welcomePage";
+import HomePage from "./homePage";
 
 const Layout = () => {
-    const location = useLocation();
-    const pathname = location.pathname;
+  const location = useLocation();
+  const pathname = location.pathname;
   return (
-    <div className="w-[100vw] h-screen flex items-center justify-center">
+    <div className={`w-[100vw] h-screen flex items-center justify-center  ${pathname==="/" ? "": "main"} `}>
       <Outlet />
-      {pathname==="/" && <WelcomePage/>}
     </div>
   );
 };
