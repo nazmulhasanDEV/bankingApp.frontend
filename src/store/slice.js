@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: false,
+  value: false
 };
 
 export const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {
     login: (state) => {
@@ -13,8 +13,8 @@ export const loginSlice = createSlice({
     },
     logout: (state) => {
       state.value = false;
-    },
-  },
+    }
+  }
 });
 
 export const { login, logout } = loginSlice.actions;

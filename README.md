@@ -9,8 +9,7 @@ Currently, two official plugins are available:
 
 # Notes:
 
-==> Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for understanding absolute import, prettier and indentation issue
-==> Absolute import is more likely professional and easy to maintain app then dir based imports
+==> Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for understanding absolute import, prettier and indentation issue. Absolute import is more likely professional and easy to maintain app then dir based imports
 
 
 
