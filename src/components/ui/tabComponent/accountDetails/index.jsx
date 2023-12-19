@@ -1,7 +1,7 @@
 import React from "react";
 import AppSelect from "@/components/ui/appSelect";
 import DateRange from "@/components/dateRange";
-import { Link } from "react-feather";
+import { ChevronLeft, ChevronRight, Link } from "react-feather";
 import TableComponent from "@/components/ui/table";
 
 const AccountDetails = () => {
@@ -42,7 +42,24 @@ const AccountDetails = () => {
       <span className="px-8">
         <DateRange />
       </span>
-      <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
+      <hr className="my-8 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
+      <div className="flex justify-between mx-8 mb-5">
+      <div className="flex gap-6 ">
+        <button className="bg-gray-300 text-gray-800 px-2 py-1 text-sm">Export View</button>
+        <button className="bg-gray-300 text-gray-800 px-2 py-1 text-sm">Export All</button>
+        <button className="bg-gray-300 text-gray-800 px-2 py-1 text-sm">Print</button>
+      </div>
+      <div className="flex gap-6 ">
+        <button className="bg-gray-300 text-gray-800 pl-2 pr-4 py-1 text-sm flex items-center"><ChevronLeft className="w-4 h-4"/>Prev</button>
+        <button className="bg-gray-300 text-gray-800 px-2 py-1 text-sm flex items-center">Next<ChevronRight className="w-4 h-4"/></button>
+        
+        <div>
+          <AppSelect customClass="w-[12vw]" />
+        </div>
+        <button className="bg-blue-700 text-white px-2 py-1 text-sm flex items-center">Go</button>
+      </div>
+
+      </div>
       <div className="px-8">
         <TableComponent />
       </div>
