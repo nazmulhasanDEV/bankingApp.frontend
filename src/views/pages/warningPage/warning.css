@@ -3,16 +3,19 @@
     width: 100vw;
     height: 100vh;
 }
-.warning-page h2{
-    font-size: 18px;
-    font-weight: 700;
-    color: black;
-}
 .warning-page ul{
     font-size: 14px;
-    font-weight: 600;
-    color: black;
+    font-weight: 400;
+    color: rgb(78, 78, 78);
 }
 .warning-page li{
     padding: 2px 0;
 }
+.warning-page ul li::before {
+    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: rgb(52, 52, 205);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
