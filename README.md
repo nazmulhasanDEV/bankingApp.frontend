@@ -8,5 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-# Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for absolute import, prettier and indentation issue
+# Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for understanding absolute import, prettier and indentation issue
 # Absolute import is more likely professional and easy to maintain app then dir based imports
