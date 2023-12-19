@@ -14,10 +14,10 @@ Currently, two official plugins are available:
 
 
 
-==> .env.local ==> for just development environment and it will only work in dev environment. It will be ignored by github
+==> **.env.local**: for just development environment and it will only work in dev environment. It will be ignored by github
 
-==> .env.production ==> for production environment and it will only work in production environment. It will not be ignored by github
+==> **.env.production** :: for production environment and it will only work in production environment. It will not be ignored by github
 
-==> Add new env following below process:
+==> **Add new env following below process:**
 VITE_API_URL=http://127.0.0.1:8000/
-VITE_YOUR_NEW_ENV="YOUR_VALUE" ** VITE_ ** prefix is mendatory
+VITE_YOUR_NEW_ENV="YOUR_VALUE"  **VITE_** prefix is mendatory
