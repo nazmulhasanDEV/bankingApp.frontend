@@ -1,0 +1,18 @@
+.warning-page{
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+.warning-page h2{
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+.warning-page ul{
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+}
+.warning-page li{
+    padding: 2px 0;
+}
