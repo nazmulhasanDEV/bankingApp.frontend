@@ -20,4 +20,4 @@ Currently, two official plugins are available:
 
 ==> Add new env following below process:
 VITE_API_URL=http://127.0.0.1:8000/
-VITE_YOUR_NEW_ENV="YOUR_VALUE"
+VITE_YOUR_NEW_ENV="YOUR_VALUE" ** VITE_ ** prefix is mendatory
