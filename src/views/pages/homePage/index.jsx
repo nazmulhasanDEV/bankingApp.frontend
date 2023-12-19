@@ -1,17 +1,16 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from "react";
-import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
+import { NavLink } from "react-router-dom";
 import {
   ArrowRight,
   Award,
   ChevronDown,
-  ChevronRight,
   Search,
   X,
 } from "react-feather";
-import FeatureCards from "./FeatureCards";
-import Footer from "./Footer";
-import { NavLink } from "react-router-dom";
-import { TabNew, TabsNew } from "../../../components/ui/appTab/AppTabNew";
+import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
+import { TabNew, TabsNew } from "@/components/ui/appTab/AppTabNew";
+import Footer from "@/views/pages/homePage/Footer.jsx";
 
 const HomePage = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -82,7 +81,7 @@ const HomePage = () => {
         <div className="header-content">
           <ul>
             <li>
-              <img src={logo} alt="" srcset="" className="logo-header" />
+              <img src={logo} alt="" srcSet="" className="logo-header" />
             </li>
             {listItemsFirst.map((item, index) => (
               <li
@@ -116,7 +115,7 @@ const HomePage = () => {
               >
                 <div className="w-[100%]">
                   <label
-                    for="1"
+                    htmlFor="1"
                     className="pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
                   ></label>
                   <input
@@ -188,19 +187,19 @@ const HomePage = () => {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjO7rCglG7srkC7IvXg0GAGRJUV0vS_4zmwMbmqKHN8fbxUkmXYP37I-lYVgHduHrohLo&usqp=CAU"
                 className="w-32"
                 alt=""
-                srcset=""
+                srcSet=""
               />
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQftazGeqmCY8c4zjFiKsW-JqNZiexrTQWt4THZzZvBwBal8RGxYu3mZyi9jwN9HIGKckM&usqp=CAU"
                 className="w-24 h-24"
                 alt=""
-                srcset=""
+                srcSet=""
               />
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjO7rCglG7srkC7IvXg0GAGRJUV0vS_4zmwMbmqKHN8fbxUkmXYP37I-lYVgHduHrohLo&usqp=CAU"
                 className="w-32"
                 alt=""
-                srcset=""
+                srcSet=""
               />
             </span>
           </div>
@@ -284,7 +283,7 @@ const HomePage = () => {
             <img
               src="https://www.boq.com.au/content/dam/boq/images/content-tile/young-man-laptop-content.jpg"
               alt=""
-              srcset=""
+              srcSet=""
             />
           </div>
           <div className="w-4/5 flex flex-col gap-5">

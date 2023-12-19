@@ -5,11 +5,11 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Layout from "./views/pages";
-import MainPage from "./views/pages/main";
-import LoginBOQ from "./views/pages/loginPage";
-import HomePage from "./views/pages/homePage";
-import WarningPage from "./views/pages/warningPage";
+import Layout from "@/views/pages/index.jsx";
+import MainPage from "@/views/pages/main";
+import LoginBOQ from "@/views/pages/loginPage";
+import HomePage from "@/views/pages/homePage";
+import WarningPage from "@/views/pages/warningPage";
 
 
 

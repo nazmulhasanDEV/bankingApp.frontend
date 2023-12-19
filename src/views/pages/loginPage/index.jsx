@@ -9,7 +9,7 @@ const LoginBOQ = () => {
       <div className="flex">
         <div>
           <span className="flex justify-start items-start">
-            <img src={logo} alt="" srcset="" className="w-40" />
+            <img src={logo} alt="" srcSet="" className="w-40" />
           </span>
           {/* input fields */}
           <div className="card p-20">
@@ -26,28 +26,28 @@ const LoginBOQ = () => {
               <span className="flex flex-col gap-5 ">
                 <span className="w-42">
                   <label
-                    for="small-input"
-                    class="block mb-2 text-sm font-medium text-white"
+                    htmlFor="small-input"
+                    className="block mb-2 text-sm font-medium text-white"
                   >
                     Customer access number
                   </label>
                   <input
                     type="text"
                     id="small-input"
-                    class="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </span>
                 <span className="w-42">
                   <label
-                    for="small-input"
-                    class="block mb-2 text-sm font-medium text-white"
+                    htmlFor="small-input"
+                    className="block mb-2 text-sm font-medium text-white"
                   >
                     Password
                   </label>
                   <input
                     type="text"
                     id="small-input"
-                    class="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </span>
               </span>
@@ -55,15 +55,15 @@ const LoginBOQ = () => {
                 <span className="w-42 flex items-center">
                   <span>
                     <label
-                      for="small-input"
-                      class="block mb-2 text-sm font-medium text-white"
+                      htmlFor="small-input"
+                      className="block mb-2 text-sm font-medium text-white"
                     >
                       User ID
                     </label>
                     <input
                       type="text"
                       id="small-input"
-                      class="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
+                      className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
                     />
                   </span>
                   <span className="pt-5 px-5 flex flex-col">

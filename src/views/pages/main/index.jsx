@@ -13,7 +13,7 @@ const MainPage = () => {
       <div className="flex">
         <div>
           <span className="flex justify-start items-start">
-            <img src={logo} alt="" srcset="" className="w-40" />
+            <img src={logo} alt="" srcSet="" className="w-40" />
           </span>
 
           <div className="">
@@ -31,7 +31,7 @@ const MainPage = () => {
           </div>
         </div>
         <div className="mt-32">
-        <span className="p-2 flex items-center justify-center bg-white text-black">
+          <span className="p-2 flex items-center justify-center bg-white text-black">
             <Power className="w-5 h-5" />
           </span>
           <span className="p-2 flex items-center justify-center bg-white text-black">
