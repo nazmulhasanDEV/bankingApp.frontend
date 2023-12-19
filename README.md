@@ -8,15 +8,15 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-# Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for understanding absolute import, prettier and indentation issue
-# Absolute import is more likely professional and easy to maintain app then dir based imports
+==> Check jsconfig.json, .eslintrc.cjs, .prettierrc, and vite.config.js file for understanding absolute import, prettier and indentation issue
+==> Absolute import is more likely professional and easy to maintain app then dir based imports
 
 
 
-# .env.local ==> for just development environment and it will only work in dev environment. It will be ignored by github
+==> .env.local ==> for just development environment and it will only work in dev environment. It will be ignored by github
 
-# .env.production ==> for production environment and it will only work in production environment. It will not be ignored by github
+==> .env.production ==> for production environment and it will only work in production environment. It will not be ignored by github
 
-# Add new env following below process:
+==> Add new env following below process:
 VITE_API_URL=http://127.0.0.1:8000/
 VITE_YOUR_NEW_ENV="YOUR_VALUE"
