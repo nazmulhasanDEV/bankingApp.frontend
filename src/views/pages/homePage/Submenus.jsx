@@ -83,7 +83,7 @@ const Submenus = () => {
       </div>
       <NavLink to="/warning">
         <div className="p-4 flex items-center gap-2 font-tmedium text-white bg-blue-600 px-6 cursor-pointer">
-          LogOn
+          Login
         </div>
       </NavLink>
     </div>

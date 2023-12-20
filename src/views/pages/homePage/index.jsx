@@ -104,7 +104,7 @@ const HomePage = () => {
             </button>
             <NavLink to="/warning">
               <button className="p-2 block items-center gap-2 text-white bg-blue-600 px-6 cursor-pointer">
-                LogOn
+                Login
               </button>
             </NavLink>
             {showSearchField && (

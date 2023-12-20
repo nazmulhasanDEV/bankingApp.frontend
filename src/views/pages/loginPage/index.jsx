@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { HelpCircle, Printer } from "react-feather";
 import { authenticateUser } from "@/apiServices/authHelper";
 
 const LoginBOQ = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state)=> state);
-  console.log("state: ", state);
+  const { isAuthenticated } = useSelector((state) => state.auth.authInfo);
+  // console.log("state: ", state);
   const [loginCredential, setLoginCredential] = useState({});
   console.log("loginCredential: ", loginCredential);
 
@@ -21,9 +22,9 @@ const LoginBOQ = () => {
     dispatch(authenticateUser({ ...loginCredential }));
   };
 
-  // useEffect(() => {
-  //   if (isAuthenticated) navigate("/");
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    if (isAuthenticated) navigate("/accounts");
+  }, [isAuthenticated]);
 
   return (
     <div className="w-[60rem] flex flex-col items-center justify-center">

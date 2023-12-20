@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { ArrowRight } from "react-feather";
 import { NavLink } from "react-router-dom";

@@ -10,7 +10,7 @@ import MainPage from "@/views/pages/main";
 import LoginBOQ from "@/views/pages/loginPage";
 import HomePage from "@/views/pages/homePage";
 import WarningPage from "@/views/pages/warningPage";
-
+import ProtectedRoute from "@/views/AuthProvider/index.jsx";
 
 
 const router = createBrowserRouter(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="warning" element={<WarningPage />} />
       <Route path="login" element={<LoginBOQ />} />
-      <Route path="main" element={<MainPage />} />
+      <Route path="accounts" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
     </Route>
   )
 );
