@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { NavLink } from "react-router-dom";
 import { HelpCircle, Printer } from "react-feather";
+import { authenticateUser } from "@/apiServices/authHelper";
 
 const LoginBOQ = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state)=> state);
+  console.log("state: ", state);
+  const [loginCredential, setLoginCredential] = useState({});
+  console.log("loginCredential: ", loginCredential);
+
+  const onChangeHandler = (event) => {
+    setLoginCredential((prevData) => ({ ...prevData, [event.target.name]: event.target.value }));
+  };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    dispatch(authenticateUser({ ...loginCredential }));
+  };
+
+  // useEffect(() => {
+  //   if (isAuthenticated) navigate("/");
+  // }, [isAuthenticated]);
+
   return (
     <div className="w-[60rem] flex flex-col items-center justify-center">
       <div className="flex">
@@ -33,6 +54,9 @@ const LoginBOQ = () => {
                   </label>
                   <input
                     type="text"
+                    name="customer_access_number"
+                    value={loginCredential?.customer_access_number}
+                    onChange={onChangeHandler}
                     id="small-input"
                     className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
@@ -46,6 +70,9 @@ const LoginBOQ = () => {
                   </label>
                   <input
                     type="text"
+                    value={loginCredential?.password}
+                    onChange={onChangeHandler}
+                    name="password"
                     id="small-input"
                     className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
@@ -62,6 +89,9 @@ const LoginBOQ = () => {
                     </label>
                     <input
                       type="text"
+                      name="userID"
+                      value={loginCredential?.userID}
+                      onChange={onChangeHandler}
                       id="small-input"
                       className="block p-2 text-gray-900 border border-gray-300 bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
                     />
@@ -76,11 +106,11 @@ const LoginBOQ = () => {
                   </span>
                 </span>
                 <span className="flex gap-5">
-                  <NavLink to="/main">
-                    <button className="bg-orange-400 px-5 py-1.5 text-white font-semibold">
-                      Log On
-                    </button>
-                  </NavLink>
+                  {/* <NavLink to="/main"> */}
+                  <button className="bg-orange-400 px-5 py-1.5 text-white font-semibold" onClick={onSubmitHandler}>
+                      Login
+                  </button>
+                  {/* </NavLink> */}
                   <button className="text-white">Cancel</button>
                 </span>
               </span>
