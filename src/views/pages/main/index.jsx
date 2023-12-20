@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { Briefcase, DollarSign, Globe, HelpCircle, Home, LogIn, MessageSquare, Power, Printer, User } from "react-feather";
@@ -9,6 +10,7 @@ import TransferPage from "@/components/ui/tabComponent/transfer";
 import DummyContent from "@/components/ui/tabComponent/dummyPage";
 import { getBankAccounts } from "@/apiServices/getBankAccounts";
 import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
+import { logout } from "@/store/features/authSlice/authSlice";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const MainPage = () => {
           </div>
         </div>
         <div className="mt-32">
-          <span className="p-2 flex items-center justify-center bg-white text-black">
+          <span className=" cursor-pointer p-2 flex items-center justify-center bg-white text-black" onClick={() => dispatch(logout())}>
             <Power className="w-5 h-5" />
           </span>
           <span className="p-2 flex items-center justify-center bg-white text-black">

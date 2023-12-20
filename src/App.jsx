@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Layout from "@/views/pages/index.jsx";
 import MainPage from "@/views/pages/main";
 import LoginBOQ from "@/views/pages/loginPage";
@@ -28,6 +29,7 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer />
     </>
   );
 };

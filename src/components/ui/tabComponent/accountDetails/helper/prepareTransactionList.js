@@ -15,13 +15,15 @@ export const prepareTransactionList = (data, currentBankAccountInfo) => {
         description: item?.description,
         debit:
           item?.to_account?.account_number !== currentBankAccountInfo?.account_number
-            ? `${getCurrency(currentBankAccountInfo?.currency_type) || ""}${item?.amount_to_send}`
+            ? `${getCurrency(currentBankAccountInfo?.currency_type) || ""} ${item?.amount_to_send}`
             : "0",
         credit:
           item?.from_account?.account_number !== currentBankAccountInfo?.account_number
-            ? `${getCurrency(currentBankAccountInfo?.currency_type) || ""}${item?.amount_to_send}`
+            ? `${getCurrency(currentBankAccountInfo?.currency_type) || ""} ${item?.amount_to_send}`
             : "0",
-        balance: currentBankAccountInfo?.balance
+        balance: `${getCurrency(currentBankAccountInfo?.currency_type) || ""} ${
+          currentBankAccountInfo?.balance
+        }`
       };
     });
 

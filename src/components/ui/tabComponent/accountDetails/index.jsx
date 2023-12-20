@@ -13,10 +13,10 @@ const AccountDetails = () => {
   const { bankInfo } = useSelector((state) => state.bank);
 
   const [currentBankAccountInfo, setCurrentBankAccountInfo] = useState({});
-  console.log("currentBankAccountInfo: ", currentBankAccountInfo);
+  // console.log("currentBankAccountInfo: ", currentBankAccountInfo);
 
   const [transactions, setTransactions] = useState([]);
-  console.log("transaction: ", transactions);
+  // console.log("transaction: ", transactions);
 
   const onChangeHandler = (event) => {
     setCurrentBankAccountInfo(() => {
@@ -27,7 +27,7 @@ const AccountDetails = () => {
   useEffect(() => {
     const getAllTransactionsOfSelectedAccount = async ()=> {
       const data = await  getTransactionList({bankAccountNumber: currentBankAccountInfo?.account_number, token: accessToken})
-      console.log("data: ", data);
+      // console.log("data: ", data);
       setTransactions(prepareTransactionList(data, currentBankAccountInfo));
     };
     getAllTransactionsOfSelectedAccount();
