@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { Briefcase, DollarSign, Globe, HelpCircle, Home, LogIn, MessageSquare, Power, Printer, User } from "react-feather";
 import { Tabs, Tab } from "@/components/ui/appTab";
@@ -6,8 +7,23 @@ import HomePage from "@/components/ui/tabComponent/home";
 import AccountDetails from "@/components/ui/tabComponent/accountDetails";
 import TransferPage from "@/components/ui/tabComponent/transfer";
 import DummyContent from "@/components/ui/tabComponent/dummyPage";
+import { getBankAccounts } from "@/apiServices/getBankAccounts";
+import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const { accessToken } = useSelector((state) => state.auth.authInfo);
+
+
+  useEffect(() => {
+    // console.log("calling");
+    const getAllBankAccounts  = async () => {
+      const accounts = await getBankAccounts(accessToken);
+      dispatch(updateBankInfo(accounts?.data));
+    };
+    getAllBankAccounts();
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center fixed top-20">
       <div className="flex">
@@ -21,7 +37,7 @@ const MainPage = () => {
               <Tab component={<HomePage/>} active>
                 <Home className="text-white"/>
               </Tab>
-              <Tab component={<AccountDetails/>}><LogIn className="text-white"/></Tab>
+              <Tab component={<AccountDetails />}><LogIn className="text-white"/></Tab>
               <Tab component={<TransferPage/>}><DollarSign className="text-white"/></Tab>
               <Tab component={<DummyContent/>}><Globe className="text-white"/></Tab>
               <Tab component={<DummyContent/>}><MessageSquare className="text-white"/></Tab>

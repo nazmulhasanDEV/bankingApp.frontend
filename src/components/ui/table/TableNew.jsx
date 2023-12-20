@@ -1,24 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { File } from "react-feather";
 import { useSelector } from "react-redux";
-import { getBankAccounts } from "@/apiServices/getBankAccounts";
 import { size } from "lodash";
 
 const TableNew = () => {
-
-  const { accessToken } = useSelector((state) => state.auth.authInfo);
-
-  const [bankAccounts, setBankAccounts] = useState([]);
-  console.log("bankAccounts: ", bankAccounts);
-
-  useEffect(() => {
-    const getAllBankAccounts  = async () => {
-      const accounts = await getBankAccounts(accessToken);
-      // console.log("accounts: ", accounts);
-      setBankAccounts(accounts?.data);
-    };
-    getAllBankAccounts();
-  }, []);
+  const { bankInfo } = useSelector((state) => state.bank);
 
   return (
     <div className="">
@@ -48,8 +34,8 @@ const TableNew = () => {
             </thead>
             <tbody>
               {
-                size(bankAccounts) ? (
-                  bankAccounts.map((item, index) => {
+                size(bankInfo?.bankAccountList) ? (
+                  bankInfo?.bankAccountList.map((item, index) => {
                     return (
                       <tr key={`account-${index}`}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
