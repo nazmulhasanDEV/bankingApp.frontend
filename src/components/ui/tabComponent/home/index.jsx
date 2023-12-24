@@ -1,11 +1,11 @@
 import React from "react";
 import TableNew from "@/components/ui/table/TableNew";
-import { AlertCircle, ArrowRight, ChevronRight, Link } from "react-feather";
+import { AlertCircle, ChevronRight, Link } from "react-feather";
 
 const HomePage = () => {
   return (
-    <div className="w-[70rem] h-fit flex">
-      <div class="w-2/3 px-2">
+    <div className="w-[80vw] h-[45rem] overflow-y-scroll no-scrollbar flex">
+      <div className="w-2/3">
         <TableNew />
       </div>
       <div className="flex flex-col gap-4 w-1/3">
@@ -35,7 +35,6 @@ const HomePage = () => {
             <img
               src="https://images.pexels.com/photos/4126743/pexels-photo-4126743.jpeg?auto=compress&cs=tinysrgb&w=600"
               alt=""
-              srcset=""
             />
           </span>
           <span className="bg-white p-4 flex items-center justify-center gap-2">

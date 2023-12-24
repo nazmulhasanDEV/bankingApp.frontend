@@ -35,7 +35,7 @@ const AccountDetails = () => {
 
 
   return (
-    <div className="w-[70rem] h-[40rem] overflow-y-scroll bg-white">
+    <div className="w-[80vw] h-[45rem] overflow-y-scroll no-scrollbar bg-white">
       <h1 className="bg-orange-500 p-4 flex items-center gap-2">
         <Link className="w-5 h-5 text-white" />
         Account Details

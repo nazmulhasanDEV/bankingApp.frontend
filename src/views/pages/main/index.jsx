@@ -27,14 +27,14 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center fixed top-20">
+    <div className="flex flex-col items-center justify-center fixed top-12">
       <div className="flex">
         <div>
           <span className="flex justify-start items-start">
             <img src={logo} alt="" srcSet="" className="w-40" />
           </span>
 
-          <div className="">
+          <div className="w-full">
             <Tabs>
               <Tab component={<HomePage/>} active>
                 <Home className="text-white"/>

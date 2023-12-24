@@ -7,7 +7,7 @@ import DatePickers from "@/components/datePicker";
 const TransferPaymentDetailsForm = ({ onChangeHandler = () => {}, onSubmitHandler = () => { }, loader = false }) => {
   const frequencies = [{ title: 1, value: 1 }, { title: 2, value: 2 }, { title: 3, value:3 }];
   return (
-    <div className="px-8">
+    <div className="px-8 ">
       <form action="">
         <div className="flex items-center mb-5">
           <label
