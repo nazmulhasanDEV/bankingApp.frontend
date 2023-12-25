@@ -6,11 +6,11 @@ import { Briefcase, DollarSign, Globe, HelpCircle, Home, LogIn, MessageSquare, P
 import { Tabs, Tab } from "@/components/ui/appTab";
 import HomePage from "@/components/ui/tabComponent/home";
 import AccountDetails from "@/components/ui/tabComponent/accountDetails";
-import TransferPage from "@/components/ui/tabComponent/transfer";
 import DummyContent from "@/components/ui/tabComponent/dummyPage";
 import { getBankAccounts } from "@/apiServices/getBankAccounts";
 import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 import { logout } from "@/store/features/authSlice/authSlice";
+import ExistingPayee from "@/components/ui/tabComponent/existingPayee";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const MainPage = () => {
                 <Home className="text-white"/>
               </Tab>
               <Tab component={<AccountDetails />}><LogIn className="text-white"/></Tab>
-              <Tab component={<TransferPage/>}><DollarSign className="text-white"/></Tab>
+              <Tab component={<ExistingPayee/>}><DollarSign className="text-white"/></Tab>
               <Tab component={<DummyContent/>}><Globe className="text-white"/></Tab>
               <Tab component={<DummyContent/>}><MessageSquare className="text-white"/></Tab>
               <Tab component={<DummyContent/>}><User className="text-white"/></Tab>
