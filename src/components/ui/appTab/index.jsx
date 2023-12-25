@@ -34,7 +34,7 @@ export function Tabs({ children }) {
           );
         })}
       </div>
-      <div className="p-5 card">
+      <div className="card">
         {children.map((item, i) => {
           return (
             <div key={i} className={` ${i === activeTab ? "visible" : "hidden"} text-gray-primary text-semi-12`}>

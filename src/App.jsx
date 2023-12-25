@@ -3,16 +3,18 @@ import {
   Route,
   RouterProvider,
   createBrowserRouter,
-  createRoutesFromElements,
+  createRoutesFromElements
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Layout from "@/views/pages/index.jsx";
-import MainPage from "@/views/pages/main";
 import LoginBOQ from "@/views/pages/loginPage";
 import HomePage from "@/views/pages/homePage";
 import WarningPage from "@/views/pages/warningPage";
-import ProtectedRoute from "@/views/AuthProvider/index.jsx";
-
+import AccountsHome from "./components/ui/tabComponent/home";
+import AccountDetails from "./components/ui/tabComponent/accountDetails";
+import ExistingPayee from "./components/ui/tabComponent/existingPayee";
+import OthersPayee from "./components/ui/tabComponent/othersPayeeTab";
+import ProtectedRoute from "./views/AuthProvider";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +22,10 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="warning" element={<WarningPage />} />
       <Route path="login" element={<LoginBOQ />} />
-      <Route path="accounts" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
+      <Route path="account-home" element={<ProtectedRoute><AccountsHome /></ProtectedRoute>} />
+      <Route path="account-details" element={<ProtectedRoute><AccountDetails /></ProtectedRoute>} />
+      <Route path="existing-payee" element={<ProtectedRoute><ExistingPayee /></ProtectedRoute>} />
+      <Route path="others-payee" element={<ProtectedRoute><OthersPayee /></ProtectedRoute>} />
     </Route>
   )
 );
