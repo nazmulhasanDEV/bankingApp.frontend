@@ -5,18 +5,14 @@ import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import {
   AlertCircle,
   ChevronRight,
-  DollarSign,
-  Globe,
   HelpCircle,
-  Home,
-  LogIn,
   Power,
   Printer
 } from "react-feather";
 import { getBankAccounts } from "@/apiServices/getBankAccounts";
 import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 import { logout } from "@/store/features/authSlice/authSlice";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TableNew from "../../table/TableNew";
 import TabBar from "@/components/tabBar";
 

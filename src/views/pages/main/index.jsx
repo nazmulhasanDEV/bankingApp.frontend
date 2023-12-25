@@ -1,8 +1,19 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
-import { Briefcase, DollarSign, Globe, HelpCircle, Home, LogIn, MessageSquare, Power, Printer, User } from "react-feather";
+import {
+  Briefcase,
+  DollarSign,
+  Globe,
+  HelpCircle,
+  Home,
+  LogIn,
+  MessageSquare,
+  Power,
+  Printer,
+  User
+} from "react-feather";
 import { Tabs, Tab } from "@/components/ui/appTab";
 import HomePage from "@/components/ui/tabComponent/home";
 import AccountDetails from "@/components/ui/tabComponent/accountDetails";
@@ -16,10 +27,9 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { accessToken } = useSelector((state) => state.auth.authInfo);
 
-
   useEffect(() => {
     // console.log("calling");
-    const getAllBankAccounts  = async () => {
+    const getAllBankAccounts = async () => {
       const accounts = await getBankAccounts(accessToken);
       dispatch(updateBankInfo(accounts?.data));
     };
@@ -36,20 +46,35 @@ const MainPage = () => {
 
           <div className="w-full">
             <Tabs>
-              <Tab component={<HomePage/>} active>
-                <Home className="text-white"/>
+              <Tab component={<HomePage />} active>
+                <Home className="text-white" />
               </Tab>
-              <Tab component={<AccountDetails />}><LogIn className="text-white"/></Tab>
-              <Tab component={<ExistingPayee/>}><DollarSign className="text-white"/></Tab>
-              <Tab component={<DummyContent/>}><Globe className="text-white"/></Tab>
-              <Tab component={<DummyContent/>}><MessageSquare className="text-white"/></Tab>
-              <Tab component={<DummyContent/>}><User className="text-white"/></Tab>
-              <Tab component={<DummyContent/>}><Briefcase className="text-white"/></Tab>
+              <Tab component={<AccountDetails />}>
+                <LogIn className="text-white" />
+              </Tab>
+              <Tab component={<ExistingPayee />}>
+                <DollarSign className="text-white" />
+              </Tab>
+              <Tab component={<DummyContent />}>
+                <Globe className="text-white" />
+              </Tab>
+              <Tab component={<DummyContent />}>
+                <MessageSquare className="text-white" />
+              </Tab>
+              <Tab component={<DummyContent />}>
+                <User className="text-white" />
+              </Tab>
+              <Tab component={<DummyContent />}>
+                <Briefcase className="text-white" />
+              </Tab>
             </Tabs>
           </div>
         </div>
         <div className="mt-32">
-          <span className=" cursor-pointer p-2 flex items-center justify-center bg-white text-black" onClick={() => dispatch(logout())}>
+          <span
+            className=" cursor-pointer p-2 flex items-center justify-center bg-white text-black"
+            onClick={() => dispatch(logout())}
+          >
             <Power className="w-5 h-5" />
           </span>
           <span className="p-2 flex items-center justify-center bg-white text-black">
