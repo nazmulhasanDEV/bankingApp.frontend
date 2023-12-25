@@ -15,6 +15,7 @@ import AccountsHome from "./components/ui/tabComponent/home";
 import AccountDetails from "./components/ui/tabComponent/accountDetails";
 import ExistingPayee from "./components/ui/tabComponent/existingPayee";
 import OthersPayee from "./components/ui/tabComponent/othersPayeeTab";
+import ProtectedRoute from "./views/AuthProvider";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,11 +23,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="warning" element={<WarningPage />} />
       <Route path="login" element={<LoginBOQ />} />
-      <Route path="accounts" element={<MainPage />} />
-      <Route path="account-home" element={<AccountsHome />} />
-      <Route path="account-details" element={<AccountDetails />} />
-      <Route path="existing-payee" element={<ExistingPayee />} />
-      <Route path="others-payee" element={<OthersPayee />} />
+      <Route path="accounts" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
+      <Route path="account-home" element={<ProtectedRoute><AccountsHome /></ProtectedRoute>} />
+      <Route path="account-details" element={<ProtectedRoute><AccountDetails /></ProtectedRoute>} />
+      <Route path="existing-payee" element={<ProtectedRoute><ExistingPayee /></ProtectedRoute>} />
+      <Route path="others-payee" element={<ProtectedRoute><OthersPayee /></ProtectedRoute>} />
     </Route>
   )
 );
