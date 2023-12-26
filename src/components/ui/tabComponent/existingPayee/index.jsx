@@ -7,7 +7,6 @@ import { logout } from "@/store/features/authSlice/authSlice";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { DollarSign, Globe, HelpCircle, Home, Link, LogIn, Power, Printer } from "react-feather";
 import AppSelect from "@/components/ui/appSelect";
-import TransferAmountForm from "../othersPayeeTab/TransferAmountForm";
 import TransferPaymentDetailsForm from "../othersPayeeTab/TransferPaymentDetailsForm";
 import { prepareBankAccountList } from "../accountDetails/helper/prepareAccounList";
 import { createTransaction } from "@/apiServices/createTransaction";
@@ -23,18 +22,19 @@ const ExistingPayee = () => {
 
   const [paymentTransactionDetailInfo, setPaymentTransactionDetailInfo] = useState({
     from_account: "",
-    personalized_name: "",
-    bsb: "",
-    to_account_number: "",
-    to_account_name: "",
-    refrence: "",
+    to_account: "",
     amount: "",
     frequency: "",
     date: ""
   });
-  // console.log("paymentTransactionDetailInfo: ", paymentTransactionDetailInfo);
+  console.log("paymentTransactionDetailInfo: ", paymentTransactionDetailInfo);
 
   const { bankInfo } = useSelector((state) => state.bank);
+
+  const isContinueButtonDisabled = () => {
+    return !paymentTransactionDetailInfo?.amount || !paymentTransactionDetailInfo?.to_account || !paymentTransactionDetailInfo.from_account || !paymentTransactionDetailInfo?.date || !paymentTransactionDetailInfo?.frequency;
+  };
+
   const onChangeHandler = (event) => {
     if (event.$d) setPaymentTransactionDetailInfo((prevData) => ({ ...prevData, date: event.$d }));
     else if (event.target.name === "fron_account")
@@ -100,7 +100,7 @@ const ExistingPayee = () => {
                   <p className="text-black">Select From Account</p>
                   <AppSelect
                     customClass="w-[20vw] p-5"
-                    name="fron_account"
+                    name="from_account"
                     data={prepareBankAccountList(bankInfo?.bankAccountList)}
                     onChangeHandler={onChangeHandler}
                   />
@@ -116,7 +116,7 @@ const ExistingPayee = () => {
                   <p className="text-black">Select To Account</p>
                   <AppSelect
                     customClass="w-[20vw] p-5"
-                    name="fron_account"
+                    name="to_account"
                     data={prepareBankAccountList(bankInfo?.bankAccountList)}
                     onChangeHandler={onChangeHandler}
                   />
@@ -136,6 +136,7 @@ const ExistingPayee = () => {
                 onChangeHandler={onChangeHandler}
                 onSubmitHandler={onSubmitHandler}
                 loader={isLoading}
+                disabled={isContinueButtonDisabled()}
               />
             </div>
           </div>
@@ -143,7 +144,7 @@ const ExistingPayee = () => {
       </div>
       <div className="mt-32 ml-2">
         <button
-          className=" cursor-pointer p-2 flex items-center justify-center bg-white text-black"
+          className="cursor-pointer p-2 flex items-center justify-center bg-white text-black disabled:opacity-[0.2] disabled:cursor-not-allowed"
           onClick={() => dispatch(logout())}
         >
           <Power className="w-5 h-5" />

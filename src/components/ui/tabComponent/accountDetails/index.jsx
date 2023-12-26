@@ -24,9 +24,9 @@ const AccountDetails = () => {
   const { bankInfo } = useSelector((state) => state.bank);
 
   const [defaultBankAccount, setDefaultBankAccount] = useState({});
-  console.log("defaultBankAccount: ", defaultBankAccount);
+  // console.log("defaultBankAccount: ", defaultBankAccount);
 
-  console.log("bankInfo: ", bankInfo);
+  // console.log("bankInfo: ", bankInfo);
   const dispatch = useDispatch();
 
   const [currentBankAccountInfo, setCurrentBankAccountInfo] = useState({});
