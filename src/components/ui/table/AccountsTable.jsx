@@ -1,9 +1,11 @@
 import React from "react";
 import { File } from "react-feather";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { size } from "lodash";
+import { formatMoney } from "@/utils";
 
-const TableNew = () => {
+const AccountsTable = () => {
   const { bankInfo } = useSelector((state) => state.bank);
 
   return (
@@ -44,7 +46,7 @@ const TableNew = () => {
                           <div className="flex-shrink-0 w-10 h-10"></div>
                           <div className="">
                             <p className="text-gray-600 whitespace-no-wrap">
-                              {item?.account_number || "Not added"}
+                              <Link>{item?.account_number || "Not added"}</Link>
                             </p>
                           </div>
                         </div>
@@ -57,7 +59,7 @@ const TableNew = () => {
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {item?.currency_type === "usd" ? "$" : "€"}
-                          {item?.balance || "Not added"}
+                          {(formatMoney(item?.balance)) || "Not added"}
                         </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -93,4 +95,4 @@ const TableNew = () => {
   );
 };
 
-export default TableNew;
+export default AccountsTable;

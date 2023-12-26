@@ -23,7 +23,7 @@ const LoginBOQ = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/accounts");
+    if (isAuthenticated) navigate("/account-home");
   }, [isAuthenticated]);
 
   return (

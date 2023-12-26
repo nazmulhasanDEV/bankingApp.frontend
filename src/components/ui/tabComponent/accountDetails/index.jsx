@@ -73,7 +73,6 @@ const AccountDetails = () => {
               <span className="flex flex-col gap-2">
                 <span className="flex gap-2">
                   <p className="font-bold">{currentBankAccountInfo?.account_name}</p>
-                  <p className="underline cursor-pointer">Rename</p>
                 </span>
                 <p className="text-gray-600 text-[12px]">Day2Day Plus</p>
               </span>
@@ -82,18 +81,7 @@ const AccountDetails = () => {
               </span>
             </span>
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
-            <p className="text-black font-bold px-8">Transaction Search</p>
-
-            <span className="flex justify-between items-center px-8">
-              <span className="flex items-center gap-4">
-                <p className="text-black font-medium">Date Range</p>
-                <AppSelect placeholderText="More" customClass="w-[12vw] p-5" />
-                <button className="text-white bg-orange-500 py-1 px-2">Search</button>
-              </span>
-              <span>
-                <AppSelect placeholderText="More" customClass="w-[12vw] p-5" />
-              </span>
-            </span>
+            <p className="text-black font-bold px-8 py-2">Transaction Search</p>
             <span className="px-8">
               <DateRange />
             </span>
