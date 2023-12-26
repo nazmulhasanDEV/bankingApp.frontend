@@ -35,8 +35,8 @@ const OthersPayee = () => {
     frequency: "",
     date: dayjs().$d
   });
-  
-  
+
+
   const navigate = useNavigate();
 
   const { bankInfo } = useSelector((state) => state.bank);

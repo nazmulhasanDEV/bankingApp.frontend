@@ -44,14 +44,14 @@ const AccountDetails = () => {
   useEffect(() => {
     const getAllTransactionsOfSelectedAccount = async () => {
       const data = await getTransactionList({
-        bankAccountNumber: currentBankAccountInfo?.account_number,
+        bankAccountNumber: defaultBankAccount?.details?.account_number || currentBankAccountInfo?.account_number,
         token: accessToken
       });
-      // console.log("data: ", data);
+      console.log("data: ", data);
       setTransactions(prepareTransactionList(data, currentBankAccountInfo));
     };
     getAllTransactionsOfSelectedAccount();
-  }, [currentBankAccountInfo?.account_number]);
+  }, [currentBankAccountInfo?.account_number, defaultBankAccount?.details?.account_number]);
 
   useEffect(() => {
     if (size(bankInfo)) {
