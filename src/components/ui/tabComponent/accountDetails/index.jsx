@@ -20,11 +20,17 @@ import TabBar from "@/components/tabBar";
 import { size } from "lodash";
 
 const AccountDetails = () => {
+
+  const [dateRange, setDateRange] = useState({
+    from: "",
+    to: "",
+  });
+
   const { accessToken } = useSelector((state) => state.auth.authInfo);
   const { bankInfo } = useSelector((state) => state.bank);
 
   const [defaultBankAccount, setDefaultBankAccount] = useState({});
-  // console.log("defaultBankAccount: ", defaultBankAccount);
+  console.log("defaultBankAccount: ", defaultBankAccount);
 
   // console.log("bankInfo: ", bankInfo);
   const dispatch = useDispatch();
@@ -41,24 +47,36 @@ const AccountDetails = () => {
     });
   };
 
+
+  const dateRangeHanlder = (event) => {
+    console.log(event);
+    setDateRange((prevData) => {
+      return {
+        ...prevData,
+        from: event[0]?.$d,
+        to: event[1]?.$d
+      };
+    });
+  };
+
   useEffect(() => {
     const getAllTransactionsOfSelectedAccount = async () => {
       const data = await getTransactionList({
-        bankAccountNumber: defaultBankAccount?.details?.account_number || currentBankAccountInfo?.account_number,
+        dateRange: { ...dateRange },
+        bankAccountNumber: currentBankAccountInfo?.account_number || defaultBankAccount?.details?.account_number,
         token: accessToken
       });
-      console.log("data: ", data);
-      setTransactions(prepareTransactionList(data, currentBankAccountInfo));
+      setTransactions(prepareTransactionList(data, defaultBankAccount));
     };
     getAllTransactionsOfSelectedAccount();
-  }, [currentBankAccountInfo?.account_number, defaultBankAccount?.details?.account_number]);
+  }, [currentBankAccountInfo, defaultBankAccount, dateRange]);
 
   useEffect(() => {
     if (size(bankInfo)) {
       const defaultAccount = prepareBankAccountList(bankInfo?.bankAccountList)[0];
       setDefaultBankAccount(defaultAccount);
     }
-  }, [bankInfo])
+  }, [bankInfo]);
 
   return (
     <div className="flex items-start justify-start fixed top-12">
@@ -97,7 +115,7 @@ const AccountDetails = () => {
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
             <p className="text-black font-bold px-8 py-2">Transaction Search</p>
             <span className="px-8">
-              <DateRange />
+              <DateRange onChangeHandler={dateRangeHanlder}  />
             </span>
             <hr className="my-8 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
             <div className="flex justify-between mx-8 mb-5">
