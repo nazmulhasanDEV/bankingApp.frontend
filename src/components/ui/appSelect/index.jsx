@@ -1,7 +1,7 @@
 import { size } from "lodash";
 import React from "react";
 
-const AppSelect = ({ customClass, placeholderText, data = [], onChangeHandler = () => {}, name }) => {
+const AppSelect = ({ customClass, placeholderText, data = [], onChangeHandler = () => {}, name, defaultValue={} }) => {
   // console.log("dattest a: ", data);
 
 
@@ -10,8 +10,8 @@ const AppSelect = ({ customClass, placeholderText, data = [], onChangeHandler = 
       <fieldset>
         <div className="relative border border-gray-300 text-gray-800 bg-white shadow-lg">
           <label htmlFor="frm-whatever" className="sr-only">My field</label>
-          <select className="appearance-none w-full py-1 px-2 bg-white" onChange={onChangeHandler} name={name || "app-select"} id="frm-whatever">
-            <option value="">{placeholderText || "Select..."}&hellip;</option>
+          <select className="appearance-none w-full py-1 px-2 bg-white overflow-hidden" onChange={onChangeHandler} name={name || "app-select"} id="frm-whatever">
+            <option value={defaultValue?.value || null}>{defaultValue?.title || placeholderText || "Select..."}&hellip;</option>
             {
               size(data) ? (
                 data?.map((item, index) => {

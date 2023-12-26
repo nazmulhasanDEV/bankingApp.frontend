@@ -5,7 +5,7 @@ const getCurrency = (data) => {
   return data === "usd" ? "$" : "€";
 };
 
-export const prepareTransactionList = (data, currentBankAccountInfo) => {
+export const prepareTransactionList = (data = [], currentBankAccountInfo) => {
   if (size(data))
     return data?.map((item, index) => {
       return {

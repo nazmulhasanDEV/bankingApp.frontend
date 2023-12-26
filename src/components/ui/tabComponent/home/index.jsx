@@ -9,25 +9,14 @@ import {
   Power,
   Printer
 } from "react-feather";
-import { getBankAccounts } from "@/apiServices/getBankAccounts";
-import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 import { logout } from "@/store/features/authSlice/authSlice";
 import { Link } from "react-router-dom";
 import AccountsTable from "../../table/AccountsTable";
 import TabBar from "@/components/tabBar";
 
 const AccountsHome = () => {
-  const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.auth.authInfo);
 
-  useEffect(() => {
-    // console.log("calling");
-    const getAllBankAccounts = async () => {
-      const accounts = await getBankAccounts(accessToken);
-      dispatch(updateBankInfo(accounts?.data));
-    };
-    getAllBankAccounts();
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <div className="flex items-start justify-start fixed top-12">

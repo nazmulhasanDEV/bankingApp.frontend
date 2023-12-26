@@ -17,10 +17,16 @@ import { prepareBankAccountList } from "@/components/ui/tabComponent/accountDeta
 import { getTransactionList } from "@/apiServices/getTransactionList";
 import { prepareTransactionList } from "@/components/ui/tabComponent/accountDetails/helper/prepareTransactionList.js";
 import TabBar from "@/components/tabBar";
+import { size } from "lodash";
 
 const AccountDetails = () => {
   const { accessToken } = useSelector((state) => state.auth.authInfo);
   const { bankInfo } = useSelector((state) => state.bank);
+
+  const [defaultBankAccount, setDefaultBankAccount] = useState({});
+  console.log("defaultBankAccount: ", defaultBankAccount);
+
+  console.log("bankInfo: ", bankInfo);
   const dispatch = useDispatch();
 
   const [currentBankAccountInfo, setCurrentBankAccountInfo] = useState({});
@@ -47,6 +53,13 @@ const AccountDetails = () => {
     getAllTransactionsOfSelectedAccount();
   }, [currentBankAccountInfo?.account_number]);
 
+  useEffect(() => {
+    if (size(bankInfo)) {
+      const defaultAccount = prepareBankAccountList(bankInfo?.bankAccountList)[0];
+      setDefaultBankAccount(defaultAccount);
+    }
+  }, [bankInfo])
+
   return (
     <div className="flex items-start justify-start fixed top-12">
       <div className="flex flex-col">
@@ -64,21 +77,22 @@ const AccountDetails = () => {
             </h1>
             <span className="">
               <AppSelect
-                customClass="w-[25vw] p-5"
-                data={prepareBankAccountList(bankInfo?.bankAccountList)}
+                customClass="w-[35vw] p-5"
+                data={size(bankInfo?.bankAccountList) ? prepareBankAccountList(bankInfo?.bankAccountList)?.slice(1) : prepareBankAccountList(bankInfo?.bankAccountList)}
                 onChangeHandler={onChangeHandler}
+                defaultValue={size(bankInfo?.bankAccountList) ? defaultBankAccount : {}}
               />
             </span>
             <span className="text-black flex justify-between items-center px-8">
               <span className="flex flex-col gap-2">
                 <span className="flex gap-2">
-                  <p className="font-bold">{currentBankAccountInfo?.account_name}</p>
+                  <p className="font-bold">{currentBankAccountInfo?.account_name || defaultBankAccount?.details?.account_name}</p>
                 </span>
                 <p className="text-gray-600 text-[12px]">Day2Day Plus</p>
               </span>
-              <span>
+              {/* <span>
                 <AppSelect customClass="w-[12vw] p-5" />
-              </span>
+              </span> */}
             </span>
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
             <p className="text-black font-bold px-8 py-2">Transaction Search</p>
