@@ -3,6 +3,8 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+
 import { logout } from "@/store/features/authSlice/authSlice";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
 import { DollarSign, Globe, HelpCircle, Home, Link, LogIn, Power, Printer } from "react-feather";
@@ -12,8 +14,9 @@ import TransferPaymentDetailsForm from "./TransferPaymentDetailsForm";
 import { prepareBankAccountList } from "../accountDetails/helper/prepareAccounList";
 import { createTransaction } from "@/apiServices/createTransaction";
 import { toastMessage } from "@/utils";
-import { NavLink } from "react-router-dom";
+
 import TabBar from "@/components/tabBar";
+import dayjs from "dayjs";
 
 const OthersPayee = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,16 +28,24 @@ const OthersPayee = () => {
     from_account: "",
     personalized_name: "",
     bsb: "",
-    to_account_number: "",
+    to_account: "",
     to_account_name: "",
-    refrence: "",
+    reference: "",
     amount: "",
     frequency: "",
-    date: ""
+    date: dayjs().$d
   });
-  // console.log("paymentTransactionDetailInfo: ", paymentTransactionDetailInfo);
+  
+  
+  const navigate = useNavigate();
 
   const { bankInfo } = useSelector((state) => state.bank);
+
+
+  const isContinueButtonDisabled = () => {
+    return !paymentTransactionDetailInfo?.bsb || !paymentTransactionDetailInfo?.to_account_name || !paymentTransactionDetailInfo?.personalized_name || !paymentTransactionDetailInfo?.reference || !paymentTransactionDetailInfo?.amount || !paymentTransactionDetailInfo?.to_account || !paymentTransactionDetailInfo.from_account || !paymentTransactionDetailInfo?.date || !paymentTransactionDetailInfo?.frequency;
+  };
+
   const onChangeHandler = (event) => {
     if (event.$d) setPaymentTransactionDetailInfo((prevData) => ({ ...prevData, date: event.$d }));
     else if (event.target.name === "fron_account")
@@ -58,18 +69,27 @@ const OthersPayee = () => {
     setIsLoading(true);
     try {
       if (
-        paymentTransactionDetailInfo?.from_account &&
-        paymentTransactionDetailInfo?.to_account_name &&
-        paymentTransactionDetailInfo?.to_account_number &&
-        paymentTransactionDetailInfo?.amount &&
-        paymentTransactionDetailInfo?.frequency &&
-        paymentTransactionDetailInfo?.date
+        !isContinueButtonDisabled()
       ) {
         const createNewTransaction = await createTransaction({
-          transactionInfo: { ...paymentTransactionDetailInfo },
+          transactionInfo: { ...paymentTransactionDetailInfo, otherPayee: true },
           token: accessToken
         });
-        toastMessage("success", "Transaction succeded", "top-right");
+        if (createNewTransaction?.response?.status === 406)
+          toastMessage("error", "Insufficient balance", "top-right");
+        else {
+          setPaymentTransactionDetailInfo({
+            from_account: "",
+            to_account: "",
+            amount: "",
+            frequency: "",
+            date: dayjs()?.$d,
+            existing: true
+          });
+          // console.log(createNewTransaction.response);
+          navigate("/account-home");
+          toastMessage("success", "Transaction succeded", "top-right");
+        }
       } else toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
     } catch (error) {
       toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
@@ -99,7 +119,7 @@ const OthersPayee = () => {
                 <span className="flex justify-between items-center gap-4 px-8">
                   <p className="text-black">Select From Account</p>
                   <AppSelect
-                    customClass="w-[20vw] p-5"
+                    customClass="w-[25vw] p-5"
                     name="fron_account"
                     data={prepareBankAccountList(bankInfo?.bankAccountList)}
                     onChangeHandler={onChangeHandler}
@@ -125,6 +145,7 @@ const OthersPayee = () => {
                 onChangeHandler={onChangeHandler}
                 onSubmitHandler={onSubmitHandler}
                 loader={isLoading}
+                disabled={isContinueButtonDisabled()}
               />
             </div>
           </div>
