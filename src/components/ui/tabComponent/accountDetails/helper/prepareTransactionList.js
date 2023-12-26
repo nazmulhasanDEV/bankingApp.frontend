@@ -8,7 +8,7 @@ const getCurrency = (data) => {
 };
 
 export const prepareTransactionList = (data = [], currentBankAccountInfo) => {
-  console.log("currentBankAccountInfo: ", currentBankAccountInfo);
+  // console.log("currentBankAccountInfo: ", currentBankAccountInfo);
   // console.log("data: ", data);
   if (size(data))
     return data?.map((item, index) => {
