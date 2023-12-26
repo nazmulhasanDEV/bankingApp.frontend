@@ -3,20 +3,23 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, NavLink } from "react-router-dom";
 import { logout } from "@/store/features/authSlice/authSlice";
 import logo from "@/assets/common-assets/images/boq_logo_prev_ui.png";
-import { DollarSign, Globe, HelpCircle, Home, Link, LogIn, Power, Printer } from "react-feather";
+import dayjs from "dayjs";
+import { DollarSign, Globe, HelpCircle, Home, Link, LogIn, Power, Printer, AlertTriangle } from "react-feather";
 import AppSelect from "@/components/ui/appSelect";
 import TransferPaymentDetailsForm from "../othersPayeeTab/TransferPaymentDetailsForm";
 import { prepareBankAccountList } from "../accountDetails/helper/prepareAccounList";
 import { createTransaction } from "@/apiServices/createTransaction";
 import { toastMessage } from "@/utils";
-import { NavLink } from "react-router-dom";
 import TabBar from "@/components/tabBar";
 
 const ExistingPayee = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const { accessToken } = useSelector((state) => state.auth.authInfo);
 
@@ -25,7 +28,8 @@ const ExistingPayee = () => {
     to_account: "",
     amount: "",
     frequency: "",
-    date: ""
+    date: dayjs()?.$d,
+    existing: true
   });
   console.log("paymentTransactionDetailInfo: ", paymentTransactionDetailInfo);
 
@@ -59,8 +63,7 @@ const ExistingPayee = () => {
     try {
       if (
         paymentTransactionDetailInfo?.from_account &&
-        paymentTransactionDetailInfo?.to_account_name &&
-        paymentTransactionDetailInfo?.to_account_number &&
+        paymentTransactionDetailInfo?.to_account &&
         paymentTransactionDetailInfo?.amount &&
         paymentTransactionDetailInfo?.frequency &&
         paymentTransactionDetailInfo?.date
@@ -69,7 +72,22 @@ const ExistingPayee = () => {
           transactionInfo: { ...paymentTransactionDetailInfo },
           token: accessToken
         });
-        toastMessage("success", "Transaction succeded", "top-right");
+        if (createNewTransaction?.response?.status === 406)
+          toastMessage("error", "Insufficient balance", "top-right");
+        else {
+          setPaymentTransactionDetailInfo({
+            from_account: "",
+            to_account: "",
+            amount: "",
+            frequency: "",
+            date: dayjs()?.$d,
+            existing: true
+          });
+          // console.log(createNewTransaction.response);
+          navigate("/account-home");
+          toastMessage("success", "Transaction succeded", "top-right");
+        }
+        console.log(createNewTransaction.response);
       } else toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
     } catch (error) {
       toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
@@ -92,6 +110,11 @@ const ExistingPayee = () => {
               <Link className="w-5 h-5 text-white" />
               Enter Payment Details For Existing Payee
             </h1>
+
+            {
+              paymentTransactionDetailInfo?.from_account && paymentTransactionDetailInfo?.to_account && paymentTransactionDetailInfo?.from_account === paymentTransactionDetailInfo?.to_account ? <p className=" py-2 pt-4 text-red-600 px-8 flex gap-3"> <AlertTriangle /> From account and to accout are same. Please select different account</p> : ""
+            }
+
             <p className="font-bold text-black px-8 pt-4">From Account</p>
             <hr className="my-2 h-0.5 border-t-0 bg-gray-100 opacity-100 dark:opacity-50 mx-8" />
             <div className="w-full">
@@ -99,7 +122,7 @@ const ExistingPayee = () => {
                 <span className="flex justify-between items-center gap-4 px-8">
                   <p className="text-black">Select From Account</p>
                   <AppSelect
-                    customClass="w-[20vw] p-5"
+                    customClass="w-[25vw] p-5"
                     name="from_account"
                     data={prepareBankAccountList(bankInfo?.bankAccountList)}
                     onChangeHandler={onChangeHandler}
@@ -115,7 +138,7 @@ const ExistingPayee = () => {
                 <span className="flex justify-between items-center gap-4 px-8">
                   <p className="text-black">Select To Account</p>
                   <AppSelect
-                    customClass="w-[20vw] p-5"
+                    customClass="w-[25vw] p-5"
                     name="to_account"
                     data={prepareBankAccountList(bankInfo?.bankAccountList)}
                     onChangeHandler={onChangeHandler}
