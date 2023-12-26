@@ -11,7 +11,7 @@ const LoginBOQ = () => {
   const { isAuthenticated } = useSelector((state) => state.auth.authInfo);
   // console.log("state: ", state);
   const [loginCredential, setLoginCredential] = useState({});
-  console.log("loginCredential: ", loginCredential);
+  // console.log("loginCredential: ", loginCredential);
 
   const onChangeHandler = (event) => {
     setLoginCredential((prevData) => ({ ...prevData, [event.target.name]: event.target.value }));
@@ -23,7 +23,7 @@ const LoginBOQ = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/accounts");
+    if (isAuthenticated) navigate("/account-home");
   }, [isAuthenticated]);
 
   return (

@@ -9,25 +9,14 @@ import {
   Power,
   Printer
 } from "react-feather";
-import { getBankAccounts } from "@/apiServices/getBankAccounts";
-import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 import { logout } from "@/store/features/authSlice/authSlice";
 import { Link } from "react-router-dom";
-import TableNew from "../../table/TableNew";
+import AccountsTable from "../../table/AccountsTable";
 import TabBar from "@/components/tabBar";
 
 const AccountsHome = () => {
-  const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.auth.authInfo);
 
-  useEffect(() => {
-    // console.log("calling");
-    const getAllBankAccounts = async () => {
-      const accounts = await getBankAccounts(accessToken);
-      dispatch(updateBankInfo(accounts?.data));
-    };
-    getAllBankAccounts();
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <div className="flex items-start justify-start fixed top-12">
@@ -41,7 +30,7 @@ const AccountsHome = () => {
         <div className="w-full bg-gray-100 p-5">
           <div className="w-[80vw] h-[45rem] overflow-y-scroll no-scrollbar flex gap-2">
             <div className="w-2/3">
-              <TableNew />
+              <AccountsTable />
             </div>
             <div className="flex flex-col gap-4 w-1/3">
               <span className="shadow-md">

@@ -7,10 +7,10 @@ dayjs.extend(customParseFormat);
 
 /** Manually entering any of the following formats will perform date parsing */
 const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
-const DatePickers = ({ onChangeHandler = () => {} }) => (
+const DatePickers = ({ onChangeHandler = () => {}, defaultValue={} }) => (
   <Space direction="vertical" size={12}>
 
-    <DatePicker defaultValue={dayjs("01/01/2015", dateFormatList[0])} format={dateFormatList} onChange={onChangeHandler} name="picker" />
+    <DatePicker defaultValue={defaultValue} format={dateFormatList} onChange={onChangeHandler} name="picker" />
 
   </Space>
 );

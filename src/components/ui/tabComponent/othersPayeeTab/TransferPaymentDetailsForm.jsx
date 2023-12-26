@@ -1,11 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-empty-function */
 import React from "react";
+import dayjs from "dayjs";
 import AppSelect from "@/components/ui/appSelect";
 import DatePickers from "@/components/datePicker";
 
-const TransferPaymentDetailsForm = ({ onChangeHandler = () => {}, onSubmitHandler = () => { }, loader = false }) => {
-  const frequencies = [{ title: 1, value: 1 }, { title: 2, value: 2 }, { title: 3, value:3 }];
+const TransferPaymentDetailsForm = ({ onChangeHandler = () => {}, onSubmitHandler = () => { }, loader = false, disabled=false }) => {
+
+  const defaultDate = dayjs();
+
+  const frequencies = [{ title: "Once only", value: 1 }, { title: "Fortnightly", value: 2 }, { title: "Monthly", value:3 }];
   return (
     <div className="px-8 ">
       <form action="">
@@ -36,7 +40,7 @@ const TransferPaymentDetailsForm = ({ onChangeHandler = () => {}, onSubmitHandle
           <label htmlFor="" className="block mb-2 font-bold text-black w-[15rem]">
             Payment Date
           </label>
-          <DatePickers onChangeHandler={onChangeHandler} />
+          <DatePickers defaultValue={defaultDate} onChangeHandler={onChangeHandler} />
         </div>
       </form>
       <div className="text-gray-700 text-sm font-semibold leading-6">
@@ -62,7 +66,7 @@ const TransferPaymentDetailsForm = ({ onChangeHandler = () => {}, onSubmitHandle
         Cancel Copyright Sandstone Technology Pty Ltd [3.12.6.3 5FA1 56B1 BFCD]<br /><br />
       </div>
       <div className="flex gap-5">
-        <button className="bg-orange-500 text-white px-4 py-2 disabled:opacity-[0.1]" onClick={onSubmitHandler} disabled={loader}>{loader ? "Request processing" : "Continue" }</button>
+        <button className="bg-orange-500 text-white px-4 py-2 disabled:opacity-[0.5] disabled:cursor-not-allowed" onClick={onSubmitHandler} disabled={loader || disabled}>{loader ? "Request processing" : "Continue" }</button>
         <button className="bg-gray-400 text-white px-4 py-2">Cancel</button>
       </div>
     </div>

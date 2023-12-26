@@ -11,8 +11,9 @@ const TransferAmountForm = ({ onChangeHandler = () => {} }) => {
           <input
             type="text"
             id="payee"
-            name="name"
+            name="personalized_name"
             placeholder=""
+            onChange={onChangeHandler}
             className="border text-gray-900 border-gray-300 shadow p-1 w-[15rem] rounded "
           />
         </div>
@@ -24,6 +25,7 @@ const TransferAmountForm = ({ onChangeHandler = () => {} }) => {
             type="text"
             id="bsb"
             name="bsb"
+            onChange={onChangeHandler}
             placeholder=""
             className="border text-gray-900 border-gray-300 shadow p-1 w-[15rem] rounded "
           />
@@ -35,7 +37,7 @@ const TransferAmountForm = ({ onChangeHandler = () => {} }) => {
           <input
             type="text"
             id="account"
-            name="to_account_number"
+            name="to_account"
             onChange={onChangeHandler}
             placeholder=""
             className="border text-gray-900 border-gray-300 shadow p-1 w-[15rem] rounded "

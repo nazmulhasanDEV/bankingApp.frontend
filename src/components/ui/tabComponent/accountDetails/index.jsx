@@ -17,10 +17,22 @@ import { prepareBankAccountList } from "@/components/ui/tabComponent/accountDeta
 import { getTransactionList } from "@/apiServices/getTransactionList";
 import { prepareTransactionList } from "@/components/ui/tabComponent/accountDetails/helper/prepareTransactionList.js";
 import TabBar from "@/components/tabBar";
+import { size } from "lodash";
 
 const AccountDetails = () => {
+
+  const [dateRange, setDateRange] = useState({
+    from: "",
+    to: "",
+  });
+
   const { accessToken } = useSelector((state) => state.auth.authInfo);
   const { bankInfo } = useSelector((state) => state.bank);
+
+  const [defaultBankAccount, setDefaultBankAccount] = useState({});
+  // console.log("defaultBankAccount: ", defaultBankAccount);
+
+  // console.log("bankInfo: ", bankInfo);
   const dispatch = useDispatch();
 
   const [currentBankAccountInfo, setCurrentBankAccountInfo] = useState({});
@@ -35,17 +47,36 @@ const AccountDetails = () => {
     });
   };
 
+
+  const dateRangeHanlder = (event) => {
+    console.log(event);
+    setDateRange((prevData) => {
+      return {
+        ...prevData,
+        from: event[0]?.$d,
+        to: event[1]?.$d
+      };
+    });
+  };
+
   useEffect(() => {
     const getAllTransactionsOfSelectedAccount = async () => {
       const data = await getTransactionList({
-        bankAccountNumber: currentBankAccountInfo?.account_number,
+        dateRange: { ...dateRange },
+        bankAccountNumber: currentBankAccountInfo?.account_number || defaultBankAccount?.details?.account_number,
         token: accessToken
       });
-      // console.log("data: ", data);
-      setTransactions(prepareTransactionList(data, currentBankAccountInfo));
+      setTransactions(prepareTransactionList(data, defaultBankAccount));
     };
     getAllTransactionsOfSelectedAccount();
-  }, [currentBankAccountInfo?.account_number]);
+  }, [currentBankAccountInfo, defaultBankAccount, dateRange]);
+
+  useEffect(() => {
+    if (size(bankInfo)) {
+      const defaultAccount = prepareBankAccountList(bankInfo?.bankAccountList)[0];
+      setDefaultBankAccount(defaultAccount);
+    }
+  }, [bankInfo]);
 
   return (
     <div className="flex items-start justify-start fixed top-12">
@@ -64,38 +95,27 @@ const AccountDetails = () => {
             </h1>
             <span className="">
               <AppSelect
-                customClass="w-[25vw] p-5"
-                data={prepareBankAccountList(bankInfo?.bankAccountList)}
+                customClass="w-[35vw] p-5"
+                data={size(bankInfo?.bankAccountList) ? prepareBankAccountList(bankInfo?.bankAccountList)?.slice(1) : prepareBankAccountList(bankInfo?.bankAccountList)}
                 onChangeHandler={onChangeHandler}
+                defaultValue={size(bankInfo?.bankAccountList) ? defaultBankAccount : {}}
               />
             </span>
             <span className="text-black flex justify-between items-center px-8">
               <span className="flex flex-col gap-2">
                 <span className="flex gap-2">
-                  <p className="font-bold">{currentBankAccountInfo?.account_name}</p>
-                  <p className="underline cursor-pointer">Rename</p>
+                  <p className="font-bold">{currentBankAccountInfo?.account_name || defaultBankAccount?.details?.account_name}</p>
                 </span>
                 <p className="text-gray-600 text-[12px]">Day2Day Plus</p>
               </span>
-              <span>
+              {/* <span>
                 <AppSelect customClass="w-[12vw] p-5" />
-              </span>
+              </span> */}
             </span>
             <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
-            <p className="text-black font-bold px-8">Transaction Search</p>
-
-            <span className="flex justify-between items-center px-8">
-              <span className="flex items-center gap-4">
-                <p className="text-black font-medium">Date Range</p>
-                <AppSelect placeholderText="More" customClass="w-[12vw] p-5" />
-                <button className="text-white bg-orange-500 py-1 px-2">Search</button>
-              </span>
-              <span>
-                <AppSelect placeholderText="More" customClass="w-[12vw] p-5" />
-              </span>
-            </span>
+            <p className="text-black font-bold px-8 py-2">Transaction Search</p>
             <span className="px-8">
-              <DateRange />
+              <DateRange onChangeHandler={dateRangeHanlder}  />
             </span>
             <hr className="my-8 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50 mx-8" />
             <div className="flex justify-between mx-8 mb-5">
