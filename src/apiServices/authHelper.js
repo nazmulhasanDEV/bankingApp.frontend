@@ -33,7 +33,7 @@ export const authenticateUser = createAsyncThunk(
           }
         }
       );
-      console.log(response);
+      // console.log(response);
       return response.data;
     } catch (error) {
       // Handle network errors

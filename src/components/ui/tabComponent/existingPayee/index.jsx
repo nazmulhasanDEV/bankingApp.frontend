@@ -87,7 +87,7 @@ const ExistingPayee = () => {
           navigate("/account-home");
           toastMessage("success", "Transaction succeded", "top-right");
         }
-        console.log(createNewTransaction.response);
+        // console.log(createNewTransaction.response);
       } else toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
     } catch (error) {
       toastMessage("error", "Somethng is missing. Please check & try again", "top-right");
