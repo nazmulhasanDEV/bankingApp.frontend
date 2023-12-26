@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { File } from "react-feather";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { size } from "lodash";
 import { formatMoney } from "@/utils";
+import { updateModalProps } from "@/store/features/bankInfoSlice/bankInfoSlice";
 
 const AccountsTable = () => {
+  const dispatch = useDispatch();
   const { bankInfo } = useSelector((state) => state.bank);
 
   return (
@@ -45,8 +48,8 @@ const AccountsTable = () => {
                         <div className="flex">
                           <div className="flex-shrink-0 w-10 h-10"></div>
                           <div className="">
-                            <p className="text-gray-600 whitespace-no-wrap">
-                              <Link>{item?.account_number || "Not added"}</Link>
+                            <p className="text-gray-600 whitespace-no-wrap" tabIndex="=1" role="button" onClick={() => dispatch(updateModalProps({ accountNumber: item?.account_number }))}>
+                              <Link to="/account-details">{item?.account_number || "Not added"}</Link>
                             </p>
                           </div>
                         </div>

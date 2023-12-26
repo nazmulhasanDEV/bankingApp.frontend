@@ -21,6 +21,9 @@ import { size } from "lodash";
 
 const AccountDetails = () => {
 
+  const { modalProps } = useSelector((state) => state.bank);
+  // console.log("state: ", modalProps);
+
   const [dateRange, setDateRange] = useState({
     from: "",
     to: "",
@@ -30,16 +33,13 @@ const AccountDetails = () => {
   const { bankInfo } = useSelector((state) => state.bank);
 
   const [defaultBankAccount, setDefaultBankAccount] = useState({});
-  // console.log("defaultBankAccount: ", defaultBankAccount);
-
-  // console.log("bankInfo: ", bankInfo);
+  
   const dispatch = useDispatch();
 
   const [currentBankAccountInfo, setCurrentBankAccountInfo] = useState({});
-  // console.log("currentBankAccountInfo: ", currentBankAccountInfo);
+
 
   const [transactions, setTransactions] = useState([]);
-  // console.log("transaction: ", transactions);
 
   const onChangeHandler = (event) => {
     setCurrentBankAccountInfo(() => {
@@ -63,7 +63,7 @@ const AccountDetails = () => {
     const getAllTransactionsOfSelectedAccount = async () => {
       const data = await getTransactionList({
         dateRange: { ...dateRange },
-        bankAccountNumber: currentBankAccountInfo?.account_number || defaultBankAccount?.details?.account_number,
+        bankAccountNumber: modalProps?.accountNumber || currentBankAccountInfo?.account_number || defaultBankAccount?.details?.account_number,
         token: accessToken
       });
       setTransactions(prepareTransactionList(data, defaultBankAccount));
@@ -73,7 +73,8 @@ const AccountDetails = () => {
 
   useEffect(() => {
     if (size(bankInfo)) {
-      const defaultAccount = prepareBankAccountList(bankInfo?.bankAccountList)[0];
+      const defaultAccount = prepareBankAccountList(bankInfo?.bankAccountList)?.find((item)=> item?.key === modalProps?.accountNumber);
+      // console.log("defaultAccount: ", defaultAccount);
       setDefaultBankAccount(defaultAccount);
     }
   }, [bankInfo]);

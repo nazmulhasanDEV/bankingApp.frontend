@@ -8,7 +8,8 @@ import initialAuthStatus from "@/store/features/authSlice/authHelper/index.js";
 const initialState = {
   bankInfo: {
     bankAccountList: []
-  }
+  },
+  modalProps: {}
 };
 
 const bankInfoSlice = createSlice({
@@ -17,9 +18,12 @@ const bankInfoSlice = createSlice({
   reducers: {
     updateBankInfo: (state, action) => {
       state.bankInfo.bankAccountList = action.payload;
+    },
+    updateModalProps: (state, action) => {
+      state.modalProps = { ...state.modalProps, ...action.payload };
     }
   }
 });
 
-export const { updateBankInfo } = bankInfoSlice.actions;
+export const { updateBankInfo, updateModalProps } = bankInfoSlice.actions;
 export default bankInfoSlice.reducer;
