@@ -13,10 +13,20 @@ import { logout } from "@/store/features/authSlice/authSlice";
 import { Link } from "react-router-dom";
 import AccountsTable from "../../table/AccountsTable";
 import TabBar from "@/components/tabBar";
+import { getBankAccounts } from "@/apiServices/getBankAccounts";
+import { updateBankInfo } from "@/store/features/bankInfoSlice/bankInfoSlice";
 
 const AccountsHome = () => {
 
+  const { accessToken } = useSelector((state) => state.auth.authInfo);
+
   const dispatch = useDispatch();
+
+  const getAllBankAccounts = async () => {
+    const accounts = await getBankAccounts(accessToken);
+    dispatch(updateBankInfo(accounts?.data));
+  };
+  getAllBankAccounts();
 
   return (
     <div className="flex items-start justify-start fixed top-12">
